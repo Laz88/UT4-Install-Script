@@ -61,5 +61,10 @@ sudo chmod +x ut4.desktop
 cp ut4.desktop /home/$USER/Desktop/ut4.desktop
 sudo cp ut4.desktop /usr/share/applications/ut4.desktop
 
-# Step 6: Unlock maps
+# Step 6: Create an Uninstaller
+echo "alias ut4-uninstall='rm -rf /home/$USER/.UT4-Game/ && rm /home/$USER/Desktop/ut4.desktop && sudo rm /usr/share/applications/ut4.desktop'" >> ~/.bash_aliases && source ~/.bash_aliases
+
+echo "To uninstall UT4, type ut4-uninstall in a terminal"
+
+# Step 7: Unlock maps
 xdg-open https://www.epicgames.com/unrealtournament/forums/mapunlock
