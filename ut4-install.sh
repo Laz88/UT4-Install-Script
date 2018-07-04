@@ -14,6 +14,10 @@
 #
 #	wget https://raw.githubusercontent.com/Laz88/UT4-Install-Script/master/ut4-install.sh && chmod +x ut4-install.sh && ./ut4-install.sh
 #
+# A more elegant one line command:
+#
+# 	bash <(wget -O - https://raw.githubusercontent.com/Laz88/UT4-Install-Script/master/ut4-install.sh)
+#
 ##########################
 # SCRIPT BEGINS HERE     #
 ##########################
