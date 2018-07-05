@@ -48,7 +48,7 @@ rm "${DOWNLOADED_FILE}"
 
 # Step 4: Fix file permissions
 cd "${INSTALL_FOLDER}/LinuxNoEditor/Engine/Binaries/Linux/"
-sudo chmod +x UE4-Linux-Shipping
+chmod +x UE4-Linux-Shipping
 
 # Step 5: Launchable icons
 touch ut4.desktop
@@ -59,7 +59,7 @@ echo "Terminal=false" >> ut4.desktop
 echo "Type=Application" >> ut4.desktop
 echo "Icon=transmission" >> ut4.desktop
 echo "Categories=GTK;GNOME;Utility;" >> ut4.desktop
-sudo chmod +x ut4.desktop
+chmod +x ut4.desktop
 cp ut4.desktop "${HOME}/Desktop/ut4.desktop"
 sudo cp ut4.desktop /usr/share/applications/ut4.desktop
 
