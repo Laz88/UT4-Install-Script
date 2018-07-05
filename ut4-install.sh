@@ -51,14 +51,15 @@ cd "${INSTALL_FOLDER}/LinuxNoEditor/Engine/Binaries/Linux/"
 chmod +x UE4-Linux-Shipping
 
 # Step 5: Launchable icons
-touch ut4.desktop
-echo "[Desktop Entry]" >> ut4.desktop
-echo "Name=Unreal Tournament" >> ut4.desktop
-echo "Exec=${INSTALL_FOLDER}/LinuxNoEditor/Engine/Binaries/Linux/UE4-Linux-Shipping UnrealTournament" >> ut4.desktop
-echo "Terminal=false" >> ut4.desktop
-echo "Type=Application" >> ut4.desktop
-echo "Icon=transmission" >> ut4.desktop
-echo "Categories=GTK;GNOME;Utility;" >> ut4.desktop
+cat <<EOF > ut4.desktop
+[Desktop Entry]
+Name=Unreal Tournament
+Exec=${INSTALL_FOLDER}/LinuxNoEditor/Engine/Binaries/Linux/UE4-Linux-Shipping UnrealTournament
+Terminal=false
+Type=Application
+Icon=transmission
+Categories=GTK;GNOME;Utility;
+EOF
 chmod +x ut4.desktop
 cp ut4.desktop "${HOME}/Desktop/ut4.desktop"
 sudo cp ut4.desktop /usr/share/applications/ut4.desktop
