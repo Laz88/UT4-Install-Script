@@ -64,7 +64,7 @@ cp ut4.desktop "${HOME}/Desktop/ut4.desktop"
 sudo cp ut4.desktop /usr/share/applications/ut4.desktop
 
 # Step 6: Create an Uninstaller
-echo "alias ut4-uninstall='rm -rf ${INSTALL_FOLDER} && rm ${HOME}/Desktop/ut4.desktop && sudo rm /usr/share/applications/ut4.desktop'" >> ~/.bash_aliases && source ~/.bash_aliases
+echo "alias ut4-uninstall='rm -Rf ${INSTALL_FOLDER} && rm ${HOME}/Desktop/ut4.desktop && sudo rm /usr/share/applications/ut4.desktop'" >> ~/.bash_aliases && source ~/.bash_aliases
 
 echo "To uninstall UT4, type ut4-uninstall in a terminal"
 
