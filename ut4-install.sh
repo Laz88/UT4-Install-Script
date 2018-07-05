@@ -33,40 +33,38 @@ else
 	echo "[USER check] = $USER"
 fi
 
+DOWNLOADED_FILE=`mktemp`
+INSTALL_FOLDER="${HOME}/.UT4-Game"
+
 # Step 1: Download the file
-cd ~/Downloads/
-mkdir ut4download
-cd ut4download
-wget https://s3.amazonaws.com/unrealtournament/ShippedBuilds/%2B%2BUT%2BRelease-Next-CL-3525360/UnrealTournament-Client-XAN-3525360-Linux.zip
+wget https://s3.amazonaws.com/unrealtournament/ShippedBuilds/%2B%2BUT%2BRelease-Next-CL-3525360/UnrealTournament-Client-XAN-3525360-Linux.zip -O "${DOWNLOADED_FILE}"
 
 # Step 2: Extract the files to a folder
-mkdir /home/$USER/.UT4-Game
-unzip Unreal* -d /home/$USER/.UT4-Game/
+mkdir "${INSTALL_FOLDER}"
+unzip "${DOWNLOADED_FILE}" -d "${INSTALL_FOLDER}"
 
 # Step 3: Cleanup the download to save space
-rm Unreal*
-cd ..
-rmdir ut4download
+rm "${DOWNLOADED_FILE}"
 
 # Step 4: Fix file permissions
-cd /home/$USER/.UT4-Game/LinuxNoEditor/Engine/Binaries/Linux/
+cd "${INSTALL_FOLDER}/LinuxNoEditor/Engine/Binaries/Linux/"
 sudo chmod +x UE4-Linux-Shipping
 
 # Step 5: Launchable icons
 touch ut4.desktop
 echo "[Desktop Entry]" >> ut4.desktop
 echo "Name=Unreal Tournament" >> ut4.desktop
-echo "Exec=/home/$USER/.UT4-Game/LinuxNoEditor/Engine/Binaries/Linux/UE4-Linux-Shipping UnrealTournament" >> ut4.desktop
+echo "Exec=${INSTALL_FOLDER}/LinuxNoEditor/Engine/Binaries/Linux/UE4-Linux-Shipping UnrealTournament" >> ut4.desktop
 echo "Terminal=false" >> ut4.desktop
 echo "Type=Application" >> ut4.desktop
 echo "Icon=transmission" >> ut4.desktop
 echo "Categories=GTK;GNOME;Utility;" >> ut4.desktop
 sudo chmod +x ut4.desktop
-cp ut4.desktop /home/$USER/Desktop/ut4.desktop
+cp ut4.desktop "${HOME}/Desktop/ut4.desktop"
 sudo cp ut4.desktop /usr/share/applications/ut4.desktop
 
 # Step 6: Create an Uninstaller
-echo "alias ut4-uninstall='rm -rf /home/$USER/.UT4-Game/ && rm /home/$USER/Desktop/ut4.desktop && sudo rm /usr/share/applications/ut4.desktop'" >> ~/.bash_aliases && source ~/.bash_aliases
+echo "alias ut4-uninstall='rm -rf ${INSTALL_FOLDER} && rm ${HOME}/Desktop/ut4.desktop && sudo rm /usr/share/applications/ut4.desktop'" >> ~/.bash_aliases && source ~/.bash_aliases
 
 echo "To uninstall UT4, type ut4-uninstall in a terminal"
 
